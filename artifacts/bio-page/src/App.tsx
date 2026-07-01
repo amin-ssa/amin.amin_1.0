@@ -17,23 +17,37 @@ const LINKS = [
   { id: 2, title: 'موقع تعبيئة مجانية', url: 'https://neon-sunburst-0bf351.netlify.app', image: rechargeImg },
 ];
 
-/* ---------- بانر صغير بين الروابط والأسفل ---------- */
+/* ---------- بانر 300×250 ---------- */
 function BannerAd() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current || ref.current.dataset.loaded) return;
     ref.current.dataset.loaded = '1';
-    const s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = '//data527.click/38c4be666596252450d5/f839381d57/?placementName=alA';
-    s.async = true;
-    ref.current.appendChild(s);
+    // inject atOptions then the invoke script
+    const cfg = document.createElement('script');
+    cfg.text = `
+      atOptions = {
+        'key'    : '9a6dc323a68dddc6d562a66b18bc155b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width'  : 300,
+        'params' : {}
+      };
+    `;
+    ref.current.appendChild(cfg);
+    const invoke = document.createElement('script');
+    invoke.src = 'https://watchingprefecture.com/9a6dc323a68dddc6d562a66b18bc155b/invoke.js';
+    invoke.async = true;
+    ref.current.appendChild(invoke);
   }, []);
   return (
-    <div
-      ref={ref}
-      className="w-full overflow-hidden rounded-lg opacity-70 min-h-[50px] max-h-[90px] flex items-center justify-center"
-    />
+    <div className="flex justify-center mt-2">
+      <div
+        ref={ref}
+        style={{ width: 300, minHeight: 250 }}
+        className="overflow-hidden rounded-xl opacity-80"
+      />
+    </div>
   );
 }
 
