@@ -7,8 +7,8 @@ import { VerificationBadge } from '@/components/VerificationBadge';
 
 // Import static assets
 import profileImg from '@assets/profile-amin.jpg';
-import gamingImg from '@assets/gaming-site-screenshot.png';
-import rechargeImg from '@assets/recharge-site-screenshot.png';
+import gamingImg from '@assets/gaming-site-cover.jpg';
+import rechargeImg from '@assets/recharge-site-cover.jpg';
 
 const queryClient = new QueryClient();
 
