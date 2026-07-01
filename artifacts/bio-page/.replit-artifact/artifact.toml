@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Bio Page - amin.amin_1.0"
+version = "1.0.0"
+id = "artifacts/bio-page"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21098
+
+[services.development]
+run = "pnpm --filter @workspace/bio-page run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bio-page", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bio-page/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21098"
+BASE_PATH = "/"
